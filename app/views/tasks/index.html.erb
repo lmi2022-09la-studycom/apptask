@@ -1,14 +1,14 @@
 <h2>HOME</h2>
 <h3><%= @user.name %>さん、ようこそ</h3>
-<br>
 <p>タスク一覧</p>
 <%= form_with(model: @task) do |f| %>  <!--デフォルトでメソッド：ポストに設定 -->
 <p><%= f.text_field :content %><%= f.submit '新規作成' %></p>
 <% end %>
 
-<%= form_tag(task_search_path, method: :get) do %>
-    <%= select_tag(:status, options_for_select([["todo","todo"],["doing", "doing"],["done","done"]])) %>
-    <%= submit_tag "絞り込み" %>
+<%= form_with(url: tasks_path, method: :get) do |f| %>
+    <%= f.select :status, [["todo","todo"],["doing", "doing"],["done","done"]], 
+    {selected: params[:status], include_blank: true} %> <!--パラメータからtodo/doing/doneのどれかを連れ出す-->
+    <%= f.submit "絞り込み" %>
 <% end %>
 
 <table>
@@ -27,4 +27,10 @@
     <% end %>
 </table>
 
-<%= will_paginate @tasks, previous_label: '&lt 前へ', next_label: '次へ &gt' %>
+<% if params[:status] == "done" %>
+    <%= link_to "一括削除", destroy_all_path, method: :delete, data: {confirm: '一括削除しますか？'} %>
+<% end %>
+
+<%= paginate @tasks %>
+<%#= will_paginate @tasks, previous_label: '&lt 前へ', next_label: '次へ &gt' %>
+

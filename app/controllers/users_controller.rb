@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     before_action :already_logged_in, only: [:new, :create]
     def show
       @user = current_user
-      @tasks = current_user.tasks.paginate(page: params[:page], per_page: 5).all
+      @tasks = current_user.tasks.paginate(page: params[:page], per_page: 20).all
       @task = Task.new
     end
   

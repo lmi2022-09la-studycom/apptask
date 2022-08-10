@@ -4,8 +4,21 @@ class TasksController < ApplicationController
     before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
     def index
-      @tasks = Task.all
+      @user = current_user
+      status = params[:status]
+      @tasks = current_user.tasks.page(params[:page]).per(20)
+      if status.present?
+        @tasks = @tasks.where(status: params[:status])
+      end
+      @task = Task.new #新規作成フォーム用の空インスタンス
     end
+
+    # def search
+    #   @user = current_user
+    #   @tasks = current_user.tasks.where(status: params[:status]).paginate(page: params[:page], per_page: 20).all
+    #   @task = Task.new
+    #   render :index
+    # end
   
     def show
     end
@@ -16,12 +29,13 @@ class TasksController < ApplicationController
   
     def create
       @task = current_user.tasks.build(task_params)
+      @task.status = "todo"
       if @task.save
         flash[:success] = '登録しました'
         redirect_to root_path
       else
         flash[:danger] = '登録できませんでした'
-        render root_path
+        redirect_to root_path
       end
     end
   
@@ -43,10 +57,15 @@ class TasksController < ApplicationController
       flash[:success] = '削除しました'
       redirect_to root_path
     end
+    def destroy_all
+      current_user.tasks.where(status: "done").destroy_all
+      flash[:success] = '削除しました'
+      redirect_to root_path
+    end
   
     private
     def task_params
-        params.require(:task).permit(:content)
+        params.require(:task).permit(:content, :status)
     end
   
     def set_task
