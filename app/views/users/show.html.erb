@@ -1,0 +1,25 @@
+<h2>HOME</h2>
+<h3><%= @user.name %>さん、ようこそ</h3>
+<br>
+<p>タスク一覧</p>
+<%= form_with(model: @task) do |f| %>  <!--デフォルトでメソッド：ポストに設定 -->
+<p><%= f.text_field :content %><%= f.submit '新規作成' %></p>
+<% end %>
+
+<table>
+    <tr>
+    <th>id</th><th>タスク内容</th><th>登録日時</th><th>進捗</th><th>編集</th><th>削除</th>
+    </tr>
+    <% @tasks.each do |task| %>
+    <tr>
+        <td><%= task.id %></td>
+        <td><%= task.content %></td>
+        <td><%= task.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to "編集", edit_task_path(task) %></td>
+        <td><%= link_to "削除", task_path(task), method: :delete, data: {confirm: '削除しますか？'} %></td>
+    </tr>
+    <% end %>
+</table>
+
+<%= will_paginate @tasks, previous_label: '&lt 前へ', next_label: '次へ &gt' %>

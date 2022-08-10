@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Apptask</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+    <% if logged_in? %>
+      <%= link_to 'HOME', root_path %>
+      <%= link_to 'ログアウト', signout_path, method: :delete %>
+    <% else %>
+      <%= link_to '会員登録', signup_path %>
+      <%= link_to 'ログイン', signin_path %>
+    <% end %>
+  </header>
+  <main>
+    <%= render 'commons/flash' %>
+    <%= yield %>
+  </main>
+  </body>
+</html>

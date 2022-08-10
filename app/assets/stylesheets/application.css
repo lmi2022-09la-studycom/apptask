@@ -1,0 +1,43 @@
+h2 {
+    color: aqua;
+}
+
+.alert{
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.alert-success {
+    background: #d1e7dc;
+    color: #0f5132;
+}
+.alert-danger {
+    background: #f8d6da;
+    color: #842029;
+}
+header {
+    text-align: right;
+}
+dt {
+    font-weight: bold;
+    color: #354;
+    font-size: 18px;
+}
+table {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+}
+th {
+    background: #eee;
+}
+/* .pagination {
+    background: white;
+    cursor: default;
+    height: 22px;
+      float: left;
+      inline-size: auto;
+      margin-right: 1px;
+    } */

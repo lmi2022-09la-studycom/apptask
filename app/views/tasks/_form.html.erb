@@ -1,0 +1,5 @@
+<dl>
+<dt>タスク内容</dt>
+<dd><%= f.text_area :content, value: @task.content %></dd>
+<dd><%= f.select :status, ["to do", "doing", "done"], selected: "to do" %></dd>
+</dl>
