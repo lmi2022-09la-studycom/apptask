@@ -11,21 +11,32 @@
     <%= f.submit "絞り込み" %>
 <% end %>
 
-<table>
-    <tr>
-    <th>id</th><th>タスク内容</th><th>登録日時</th><th>進捗</th><th>編集</th><th>削除</th>
-    </tr>
-    <% @tasks.each do |task| %>
-    <tr>
-        <td><%= task.id %></td>
-        <td><%= task.content %></td>
-        <td><%= task.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= task.status %></td>
-        <td><%= link_to "編集", edit_task_path(task) %></td>
-        <td><%= link_to "削除", task_path(task), method: :delete, data: {confirm: '削除しますか？'} %></td>
-    </tr>
-    <% end %>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-1">
+    </div>
+    <div class="col-10">
+    <table>
+        <tr>
+        <th>id</th><th>タスク内容</th><th>登録日時</th><th>進捗</th><th>編集</th><th>削除</th>
+        </tr>
+        <% @tasks.each do |task| %>
+        <tr>
+            <td><%= task.id %></td>
+            <td><%= task.content %></td>
+            <td><%= task.created_at.strftime('%Y/%m/%d') %></td>
+            <td><%= task.status %></td>
+            <td><%= link_to "編集", edit_task_path(task) %></td>
+            <td><%= link_to "削除", task_path(task), method: :delete, data: {confirm: '削除しますか？'} %></td>
+        </tr>
+        <% end %>
+    </table>
+    </div>
+    <div class="col-1">
+    </div>
+  </div>
+</div>
+
 
 <% if params[:status] == "done" %>
     <%= link_to "一括削除", destroy_all_path, method: :delete, data: {confirm: '一括削除しますか？'} %>

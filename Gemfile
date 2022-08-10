@@ -59,3 +59,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'will_paginate'
 # gem 'bootstrap-will_paginate'
 gem 'kaminari'
+
+# ブートストラップ
+# gem 'bootstrap-sass', '~> 4.2'
