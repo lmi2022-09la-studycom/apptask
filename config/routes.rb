@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   root to: 'tasks#index'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
+  get 'settings', to: 'users#edit'
+  patch 'settings', to: 'users#update'
+  patch 'change', to: 'users#newpass'
+  delete 'destroy', to: 'users#destroy'
   get 'signin', to: 'sessions#new'
   post 'signin', to: 'sessions#create'
   delete 'signout', to: 'sessions#destroy'
   resources :tasks
-  get 'task_search', to: 'tasks#search'
+  #get 'task_search', to: 'tasks#search'
   delete 'destroy_all', to: 'tasks#destroy_all'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

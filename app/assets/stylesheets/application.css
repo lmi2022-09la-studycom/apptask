@@ -10,6 +10,7 @@ h2 {
 .alert-success {
     background: #d1e7dc;
     color: #0f5132;
+    padding: 1em;
 }
 .alert-danger {
     background: #f8d6da;
@@ -21,7 +22,9 @@ h2 {
 main {
     text-align: center;
 }
-
+ul{
+    list-style: none;
+}
 dt {
     font-weight: bold;
     color: #354;
@@ -33,13 +36,18 @@ table {
     margin-right: auto;
     border-collapse: collapse;
     align-items: center;
+    text-indent: initial;
+    border-spacing: 2px;
 }
 th, td {
     padding: 8px 16px;
     border: 1px solid #ddd;
+    display: table-cell;
+    vertical-align: inherit;
 }
 th {
     background: #eee;
+    font-weight: bold;
 }
 /* .pagination {
     background: white;

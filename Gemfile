@@ -62,3 +62,8 @@ gem 'kaminari'
 
 # ブートストラップ
 # gem 'bootstrap-sass', '~> 4.2'
+
+#ログイン施行回数の制限
+gem 'rack-attack'
+
+gem 'rails-i18n'
