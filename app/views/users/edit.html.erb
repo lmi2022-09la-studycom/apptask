@@ -1,0 +1,44 @@
+<ul class="container">
+  <li class="row">
+    <div class="col-4">
+      プロフィール変更
+    </div>
+    <div class="col-8">
+        <%= form_with(model: @user, url: settings_path) do |f| %>
+            <%= render 'form', f: f %>
+            <%= f.submit '更新', class: "btn btn-primary" %>
+            <%= link_to 'キャンセル', root_path %>
+        <% end %>
+    </div>
+  </li>
+  <hr>
+  <li class="row">
+    <div class="col-4">
+      パスワード変更
+    </div>
+    <div class="col-8">
+        <%= form_with(model: @user, url: change_path) do |f| %>
+            <dt>現在のパスワード</dt>
+            <dd><%= f.password_field :current_password %></dd>
+            <dt>新しいパスワード</dt>
+            <dd><%= f.password_field :password %></dd>
+            <dt>新しいパスワード（確認）</dt>
+            <dd><%= f.password_field :password_confirmation %></dd>
+            <%= f.submit '変更', class: "btn btn-primary" %>
+            <%= link_to 'キャンセル', root_path %>
+        <% end %>
+    </div>
+  </li>
+  <hr>
+    <div class="row">
+    <div class="col-4">退会</div>
+    <div class="col-8">
+      <a class="btn btn-sm btn-secondary" rel="nofollow" 
+      data-method="delete" href="/destroy" data-confirm="削除しますか？" >退会する</a>
+    </div>
+    </div>
+</ul>
+<hr>
+<%= render 'error' %>
+
+

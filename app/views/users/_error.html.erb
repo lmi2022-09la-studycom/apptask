@@ -1,0 +1,9 @@
+  <div class="error">
+    <% if @user.errors.any? %> <!-- any?メソッド：一件以上の時にtrueを返す -->
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
