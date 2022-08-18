@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :require_logged_in, only: [:show]
+    before_action :require_logged_in, only: [:show, :edit]
     before_action :already_logged_in, only: [:new, :create]
 
     def show
@@ -30,8 +30,9 @@ class UsersController < ApplicationController
 
     def update
       @user = current_user
-      if @user.update(user_params)
-        session[:user_id] = @user.id
+      @user.name = params[:user][:name]
+      @user.birth_date = params[:user][:birth_date]
+      if @user.save(context: :hoge)
         flash[:success] = '更新しました'
         redirect_to root_path
       else

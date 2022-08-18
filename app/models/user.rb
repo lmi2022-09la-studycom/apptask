@@ -6,6 +6,7 @@ class User < ApplicationRecord
                 uniqueness: { case_sensitive: false }}
     has_secure_password
     validates :password, length: {minimum: 6, maximum: 40},
-                format: { with: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)[!-~]{6,40}/i }
+                format: { with: /(?=.*?[a-z])(?=.*?\d)[a-z\d]/i },
+                unless: -> { validation_context == :hoge }
     has_many :tasks
 end

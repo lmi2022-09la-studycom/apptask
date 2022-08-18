@@ -1,4 +1,5 @@
 <h3>会員登録</h3>
+
 <%= form_with(model: @user, url: signup_path) do |f| %>
     <dl>
     <%= render 'form', f: f %>
@@ -8,6 +9,19 @@
     <dd><%= f.password_field :password %></dd>
     <dt>パスワード（確認）</dt>
     <dd><%= f.password_field :password_confirmation %></dd>
+    <p>※パスワードは英字、数字をそれぞれ1文字以上含む6文字以上の文字列を記入してください</p>
     </dl>
+
+
+<div class="error">
+    <% if @user.errors.any? %> <!-- any?メソッド：一件以上の時にtrueを返す -->
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+</div>
+
 <%= f.submit '会員登録' %>
 <% end %>

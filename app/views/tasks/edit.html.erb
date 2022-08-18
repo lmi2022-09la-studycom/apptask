@@ -1,6 +1,17 @@
 <h3>タスクの編集</h3>
 <%= form_with model: @task do |f| %>
-    <%= render 'form', f: f %>
+    <dl>
+    <dt>タスク内容</dt>
+    <dd><%= f.text_area :content, value: @task.content %></dd>
+    <dt>期日</dt>
+    <dd><%= f.date_field :deadline,
+        min: Time.now.prev_year,
+        max: Time.now.next_year %></dd>
+    <dt>優先順位</dt>
+    <dd><%= f.select :priority, ["must", "can", "want"], selected: "must" %></dd>
+    <dt>進捗</dt>
+    <dd><%= f.select :status, ["todo", "doing", "done"], selected: "todo" %></dd>
+    </dl>
     <%= f.submit '更新する' %>
     <%= link_to 'キャンセル', root_path %>
 <% end %>

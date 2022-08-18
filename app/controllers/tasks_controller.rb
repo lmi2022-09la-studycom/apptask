@@ -29,6 +29,8 @@ class TasksController < ApplicationController
   
     def create
       @task = current_user.tasks.build(task_params)
+      @task.deadline = Time.now
+      @task.priority = "must"
       @task.status = "todo"
       if @task.save
         flash[:success] = '登録しました'
@@ -44,7 +46,7 @@ class TasksController < ApplicationController
   
     def update
       if @task.update(task_params)
-        flash[:success] = '更新しました！'
+        flash[:success] = '更新しました'
         redirect_to root_path
       else
         flash.now[:danger] = '更新できませんでした。'
@@ -65,7 +67,7 @@ class TasksController < ApplicationController
   
     private
     def task_params
-        params.require(:task).permit(:content, :status)
+        params.require(:task).permit(:content, :deadline, :priority, :status)
     end
   
     def set_task
